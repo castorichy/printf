@@ -4,7 +4,25 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+/**
+ *struct p- holds format specifiers
+ *@va: type to print
+ *@f: funtion to print
+ */
+
+typedef struct p
+{
+	char *va;
+	int (*f)(va_list);
+
+}print;
+
 int _printf(const char *format, ...);
 void _putchar(char s);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_d(va_list d);
+int print_i(va_list i);
 
 #endif /* MAIN_H */
