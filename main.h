@@ -12,9 +12,9 @@
  */
 typedef struct p
 {
-		char va
+		char *va;
 		int (*f)(va_list);
-}point;
+}print;
 
 int _printf(const char *format, ...);
 int (*check_for_specifiers(const char *format))(va_list);

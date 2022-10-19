@@ -13,14 +13,14 @@ int (*check_specifier(const char *format))(va_list)
 
 	print s[] = {{"c", print_c},
 				{"s", print_s},
-				{"i", print_i },
-				{"d", print_d},
+				/*{"i", print_i },
+				{"d", print_d},*/
 				{NULL, NULL}
 	};
 
-	for (i = 0; *(s + i)->va != '\0'; i++)
+	for (i = 0; s[i].va != NULL; i++)
 	{
-		if (*(s + i)->va == *format)
+		if (*(s[i].va) == *format)
 		{
 			break;
 		}
@@ -44,7 +44,7 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(ap, format);
-	for (j = 0; format[j] != '\0'; j++)
+	while (format[j])
 	{
 		for (j = 0; format[j] != '%' && format[j]; j++)
 		{
