@@ -95,5 +95,3 @@ int string(char *str)
 	l = length(str);
 	return (l);
 }
-
-
