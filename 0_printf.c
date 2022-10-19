@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 {
 	va_list print;
 	int i, j = 0, len = 0;
-	char ch,*str;
+	char ch, *str;
 
 	va_start(print, format);
 	if (*format)
@@ -42,3 +42,19 @@ int _printf(const char *format, ...)
 					}
 					i++;
 					break;
+				case '%':
+					_putchar(format[i]);
+					i++;
+					len++;
+					break;
+				default:
+					_putchar(format[i]);
+					len++;
+					break;
+			}
+		}
+		len++;
+	}
+	va_end(print);
+	return (len - 1 + j);
+}
