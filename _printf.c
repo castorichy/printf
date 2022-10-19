@@ -7,7 +7,7 @@
  * Return: pointer to valid fanction
  */
 
-static int (*check_specifier(const char *format)(va_list))
+int (*check_specifier(const char *format))(va_list)
 {
 	unsigned int i;
 
@@ -18,9 +18,9 @@ static int (*check_specifier(const char *format)(va_list))
 				{NULL, NULL}
 	};
 
-	for (i = 0; s[i].va != '\0'; i++)
+	for (i = 0; *(s + i)->va != '\0'; i++)
 	{
-		if (s[i]->va ==*format)
+		if (*(s + i)->va == *format)
 		{
 			break;
 		}
@@ -29,12 +29,14 @@ static int (*check_specifier(const char *format)(va_list))
 }
 
 /**
- *
+ *_printf- function that converts format specifiers
+ *@format: string to be passed
+ *Return: length of characters
  */
 
 int _printf(const char *format, ...)
 {
-	unsigned int i, j, len = 0;
+	unsigned int j, len = 0;
 	va_list ap;
 	int (*f)(va_list);
 
@@ -42,11 +44,11 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(ap, format);
-	for (i = 0; format[i] != NULL; i++)
+	for (j = 0; format[j] != '\0'; j++)
 	{
 		for (j = 0; format[j] != '%' && format[j]; j++)
 		{
-			_putchar(format[i]);
+			_putchar(format[j]);
 			len++;
 		}
 		if (!format[j])
@@ -65,7 +67,7 @@ int _printf(const char *format, ...)
 		if (format[j + 1] == '%')
 			j += 2;
 		else
-			i++;
+			j++;
 	}
 	va_end(ap);
 	return (len);
